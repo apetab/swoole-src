@@ -515,7 +515,7 @@ static int http_request_on_header_value(swoole_http_parser *parser, const char *
         }
     }
 #ifdef SW_HAVE_COMPRESSION
-    else if (ctx->enable_compression && strncmp(header_name, "accept-encoding", header_len) == 0)
+    else if (ctx->enable_compression && header_len == sizeof("accept-encoding") && strncmp(header_name, "accept-encoding", header_len) == 0)
     {
         swoole_http_get_compression_method(ctx, at, length);
     }
